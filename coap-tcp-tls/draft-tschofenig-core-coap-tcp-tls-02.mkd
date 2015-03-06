@@ -269,10 +269,7 @@ bytes.  T is always the code for NON (1).  The Message ID is
 meaningless and thus elided.  The semantics of the other CoAP header
 fields is left unchanged.
 
-When CoAP is used over TLS then each CoAP message is transported in a
-separate TLS record layer message, making the shim header that includes the
-length information redundant.  As such, the two-byte shim header MUST be omitted
-when CoAP messages are carried over TLS.[^2]
+ If CoAP is used over TLS, each CoAP message MUST contain the length header even if it is transported in a separate TLS record layer message. While this may sound redundant, {{RFC5246}} states that  »Client message boundaries are not preserved in the record layer (i.e., multiple client messages of the same ContentType MAY be coalesced into a single TLSPlaintext record, or a single message MAY be fragmented across several records).«.[^2]
 
 [^2]: Hmm, how does that work in real-life implementations.
     RFC 5246 says: »Client
